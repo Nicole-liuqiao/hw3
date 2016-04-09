@@ -5,25 +5,31 @@ require_once ("Model.php");
 
 class Test extends Model
 {
-	public function getResult($formvars) {
-		$errMsg = "";
-		$this::ensureTable("USER");
-		$value = $formvars['username'];
+    public function getResult($formvars) {
+        $errMsg = "";
+        $this::ensureTable("USER");
 
-        $qry = sprintf("select * from USER where userName = '" . $formvars['username'] . "' and password = '" . $formvars['password'] . "'");
+        $qry = sprintf("select * from USER where userName = '" . $formvars['username'] . 
+                        "' and password = '" . $formvars['password'] . "'");
         $qryResult = mysqli_query($this->con, $qry);
-        print_r($qryresult);
+
         if (!$qryResult) {
-        	$errMsg = mysqli_error($this->con);
-        	return $result;
+            die("database abnormal: " . mysqli_error($this->con));
         }
 
-        return mysqli_num_rows($qryResult)? "" : "username doesn't exist or username and password doesn't match";
+        // if there is one row in $qryResult, user login successfully
+        // if there is no row in $qryResult, the data doesn't exist in database.        
+        if (mysqli_num_rows($qryResult) == 1) {
+            $errMsg = "user login successfully";
+        } else {
+            $errMsg = "username doesn't exist or username and password doesn't match";
+        }
+        return $errMsg;
     }
 }
 
 
-$formvars['username'] = 'admin12';
+$formvars['username'] = 'admin';
 $formvars['password'] = '123';
 $test = new Test();
 $errMsg = $test->getResult($formvars);

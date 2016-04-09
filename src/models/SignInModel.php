@@ -4,7 +4,7 @@ namespace qiaoliu\hw3\models;
 class SignInModel extends Model
 {
     /**
-     * @param $formvar array of username and password from form
+     * @param $formvar array ['username' => someuser, 'password' => somepassword]
      * @return $errMsg errMsg after check username and password against data in databas
      *
      */         
@@ -18,11 +18,15 @@ class SignInModel extends Model
         $qryResult = mysqli_query($this->con, $qry);
 
         if (!$qryResult) {
-            $errMsg = mysqli_error($this->con);
-            return $result;
+            die("database abnormal: " . mysqli_error($this->con));
         }
-        
-        // if no row in $qryResult, the data doesn't exist in database.
-        return mysqli_num_rows($qryResult)? "" : "username doesn't exist or username and password doesn't match";
+
+        // if there is one row in $qryResult, user login successfully
+        // if there is no row in $qryResult, the data doesn't exist in database.        
+        if (mysqli_num_rows($qryResult) == 1) {
+        } else {
+            $errMsg = "username doesn't exist or username and password doesn't match";
+        }
+        return $errMsg;
     }
 }

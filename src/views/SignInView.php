@@ -1,6 +1,5 @@
 <?php
 namespace qiaoliu\hw3\views;
-//session_start();
 
 class SignInView extends View
 {
