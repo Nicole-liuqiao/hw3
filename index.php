@@ -9,6 +9,9 @@ require_once("src/controllers/SignInController.php");
 require_once("src/controllers/SignUpController.php");
 require_once("src/controllers/UserController.php");
 require_once("src/controllers/SignOutController.php");
+require_once("src/controllers/UserUploadController.php");
+
+
 
 /**echo "Request: ";
 print_r($_REQUEST);
@@ -76,6 +79,9 @@ switch($controller){
 	case 'guestMain': 
 		$web = new controllers\GuestController();
 	    break;
+    case 'userUpload':
+        $web = new controllers\UserUploadController();
+        break;
     }
 $entry = $web::processRequest($controller);
 

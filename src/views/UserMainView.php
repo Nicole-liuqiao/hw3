@@ -19,6 +19,7 @@ class UserMainView extends View
 	<h1 style="text-align: center;">Image Rating: This is UserMain. Haha!</h1>
 	<div style="text-align: center;"><image src="./src/styles/logo.png"/></div>
 	<a href="./index.php?c=signout">Sign Out</a>
+	<a href="./index.php?c=userUpload">Upload</a>	
 	<h2>Recent</h2>
 		<?php
 		$catlog = "recent";

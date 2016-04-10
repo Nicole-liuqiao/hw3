@@ -26,7 +26,6 @@ class SignUpController extends Controller
         } else {
             header("Location: " . $_SERVER['REQUEST_URI']);
         }
-
     }
 
     function CollectRegistrationSubmission()
