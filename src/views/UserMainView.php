@@ -1,7 +1,7 @@
 <?php
 namespace qiaoliu\hw3\views;
 
-class GuestMainView extends View
+class UserMainView extends View
 {
 	public function render($data) {
 ?>
@@ -16,10 +16,9 @@ class GuestMainView extends View
 </head>
 <!--html body start-->
 <body>
-	<h1 style="text-align: center;">Image Rating</h1>
+	<h1 style="text-align: center;">Image Rating: This is UserMain. Haha!</h1>
 	<div style="text-align: center;"><image src="./src/styles/logo.png"/></div>
-	<a href="./index.php?c=signin">Sign in</a>
-	<a href="./index.php?c=signup">Sign up</a>
+	<a href="./index.php?c=signout">Sign Out</a>
 	<h2>Recent</h2>
 		<?php
 		$catlog = "recent";

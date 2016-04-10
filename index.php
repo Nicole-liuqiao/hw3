@@ -4,11 +4,11 @@ namespace qiaoliu\hw3;
 session_start();
 // ------[include the controllers]------ //
 require_once("src/controllers/Controller.php");
-require_once("src/controllers/MainController.php");
+require_once("src/controllers/GuestController.php");
 require_once("src/controllers/SignInController.php");
 require_once("src/controllers/SignUpController.php");
-
-$default_ctrl = "guestMain";
+require_once("src/controllers/UserController.php");
+require_once("src/controllers/SignOutController.php");
 
 /**echo "Request: ";
 print_r($_REQUEST);
@@ -23,26 +23,58 @@ echo "--------";
 
 var_dump($_SESSION);
 
-// Guest Controller: main, signin, signup
-if(!isset($_SESSION) || !$_SESSION['signedin'] {
-    if (array_key_exists("c", $_REQUEST)) {
-    $controller = strtolower($_REQUEST["c"]);
+$userDomain = ['userMain','userUpload'];
+
+$isSignIn = false;
+if(isset($_SESSION) && isset($_SESSION['signedin']) && $_SESSION['signedin']) {
+    $isSignIn = true;
+} 
+$controller = "";
+if(!isset($_REQUEST['c']) || $_REQUEST['c'] == "") {
+    if ($isSignIn) {
+        $controller = "userMain";
+    } else {
+        $controller = "guestMain";
+    } 
 } else {
-    $controller = 'userMain';
+    $controller = $_REQUEST['c'];
+    if (in_array($controller, $userDomain)) {
+        if (!$isSignIn) {
+            header("Location: index.php?c=signin&redirect=" . $controller);
+        }
+    }
 }
+
+
+/*
+
+if(isset($_SESSION) && isset($_SESSION['signedin']) && $_SESSION['signedin']) {
+    $isSignIn = true;
+    //$controller = 'userMain';
+} elseif (isset($_REQUEST['c'])) {
+    $controller = strtolower($_REQUEST['c']);
+}
+*/
+
+var_dump($controller);
+
 
 // ------[talk to the requested controller]------ //
 switch($controller){
-	case "signin":
-		$web = new controllers\SignInController();
-		break;
     case "signup":
         $web = new controllers\SignUpController();  
         break;
+    case "signin":
+        $web = new controllers\SignInController();
+        break;
     case 'userMain':
         $web = new controllers\UserController();
-	default: 
-		$web = new controllers\MainController();
+        break;
+    case 'signout':
+        $web = new controllers\SignOutController();
+        break;
+	case 'guestMain': 
+		$web = new controllers\GuestController();
 	    break;
     }
 $entry = $web::processRequest($controller);

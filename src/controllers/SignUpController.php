@@ -1,7 +1,7 @@
 <?php
 namespace qiaoliu\hw3\controllers;
 
-
+//session_start();
 require_once("./src/models/Model.php");
 require_once("./src/models/SignUpModel.php");
 require_once("./src/views/View.php");

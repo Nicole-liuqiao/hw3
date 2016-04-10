@@ -1,7 +1,7 @@
 <?php
 namespace qiaoliu\hw3\controllers;
 
-
+//session_start();
 require_once("./src/models/Model.php");
 require_once("./src/models/SignInModel.php");
 require_once("./src/views/View.php");
@@ -36,11 +36,17 @@ class SignInController extends Controller
          * if there is error message captured, call sign view with error message as prompt message
          * if there is no error message, login success, redirect to main user page.
          */
-
         if (!$data) {
             session_start();
-            $_SESSION['login'] = true;
-           // header("Location: " . $_SERVER['REQUEST_URI']);
+            $_SESSION['signedin'] = true;
+            $redirect = "";
+            //default controller
+            if(!isset($_REQUEST['redirect'])) {
+                $redirect = "userMain";
+            } else {
+                $redirect = $_REQUEST['redirect'];
+            }
+            header("Location: index.php?c=" . $redirect );
         } else {
             $view = new \qiaoliu\hw3\views\SignInView();
             $view->render($data); 
