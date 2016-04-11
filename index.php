@@ -15,6 +15,11 @@ require_once("src/controllers/UserUploadController.php");
 // controllers for loginned in user
 $userDomain = ['userMain','userUpload'];
 
+/**
+ * if in $userDomain controller, check if signed in. 
+ *                               if it's not signed in, redirect to signin page
+ * if not in $userDomain controller, call conresponding controller
+ */
 $isSignIn = false;
 if(isset($_SESSION) && isset($_SESSION['signedin']) && $_SESSION['signedin']) {
     $isSignIn = true;
