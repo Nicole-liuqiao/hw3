@@ -66,9 +66,9 @@ abstract class Model
          	$qry = sprintf("CREATE TABLE IMAGE (
          		imageid INT(12) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
          		caption VARCHAR(50) NOT NULL,
-         		userName VARCHAR(12) NOT NULL, 
+         		userid INT(12) NOT NULL, 
          		date_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-         		location VARCHAR(50) NOT NULL,
+         		location VARCHAR(150) NOT NULL,
          		scoreSum INT(12),
          		numOfVotes INT(11)
          		)");
@@ -77,7 +77,7 @@ abstract class Model
         	case 'RATE':
         	$qry = sprintf("CREATE TABLE RATE (
          		imageid INT(12), 
-         		userName VARCHAR(12),
+         		userid INT(12) NOT NULL, 
          		score INT(12),
          		CONSTRAINT image_userPair PRIMARY KEY (imageid, userName)
          		)");
