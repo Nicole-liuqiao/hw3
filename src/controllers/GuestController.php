@@ -13,7 +13,8 @@ class GuestController extends Controller
 		$data = [];
 		$model = new \qiaoliu\hw3\models\ImageQueryModel();
 		$data = $model->getResult(null);
-		var_dump($data);
+		//var_dump($data);
+
 		$view = new \qiaoliu\hw3\views\GuestMainView();
 		$view->render($data);
 	}

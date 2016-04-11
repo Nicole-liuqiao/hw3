@@ -14,7 +14,7 @@ class UserUploadModel extends Model
         $this::ensureTable("IMAGE");
 
         $userid = $_SESSION['userid'];
-        $filename  = getcwd() . '/src/resources/' . 'userid' . $userid .
+        $filename  = './src/resources/' . 'userid' . $userid .
                      "-" . 'time' . time() . "-" . $_POST['caption'] . "-" .
                       $_FILES['photo']['name']; 
         if (!move_uploaded_file($_FILES['photo']['tmp_name'], $filename)) {

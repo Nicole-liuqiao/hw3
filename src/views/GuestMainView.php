@@ -23,38 +23,38 @@ class GuestMainView extends View
 	<h2>Recent</h2>
 		<?php
 		$catlog = "recent";
-		if (count($data[$catlog] == 0)) {
+		if (count($data[$catlog]) == 0) {
 ?>  <p>There is no data in database. Please sign in and upload image. </p>
 		<?php
-		}
-		for ($i = 0; $i < count($data[$catlog]); $i++) { 
-			?>
-			<image src="src/resources/image<?php echo $i?>.png" />
-			<ul>
-			<li>Caption: <?php echo $data[$catlog][$i]["caption"] ?></li>
-			<li>User: <?php echo $data[$catlog][$i]["user"] ?></li>
-			<li>Score: <?php echo $data[$catlog][$i]["rating"] ?></li>
-			<li>Create Date: <?php echo $data[$catlog][$i]["date"] ?></li>
-		</ul>
-		<?php 
+		} else {
+				for ($i = 0; $i < count($data[$catlog]); $i++) { 
+				?>
+				<image src="<?php echo $data[$catlog][$i]["location"];?>"/>
+				<ul>
+				<li>Caption: <?php echo $data[$catlog][$i]["caption"] ?></li>
+				<li>User: <?php echo $data[$catlog][$i]["username"] ?></li>
+				<li>Score: <?php echo $data[$catlog][$i]["rating"] ?></li>
+				<li>Create Date: <?php echo $data[$catlog][$i]["date"] ?></li>
+			</ul>
+		<?php }
 		}
 ?>  <h2>Popularity</h2>
 	<?php
 		$catlog = "popularity";
-		if (count($data[$catlog] == 0)) {
+		if (count($data[$catlog]) == 0) {
 ?>  <p>There is no data in database. Please sign in and upload image. </p>
 		<?php
-		}
-		for ($i = 0; $i < count($data[$catlog]); $i++) { 
-			?>
-			<image src="src/resources/image<?php echo $i?>.png" />
-			<ul>
-			<li>Caption: <?php echo $data[$catlog][$i]["caption"] ?></li>
-			<li>User: <?php echo $data[$catlog][$i]["user"] ?></li>
-			<li>Score: <?php echo $data[$catlog][$i]["rating"] ?></li>
-			<li>Create Date: <?php echo $data[$catlog][$i]["date"] ?></li>
-		</ul>
-		<?php
+		} else {
+			for ($i = 0; $i < count($data[$catlog]); $i++) { 
+				?>
+				<image src="<?php echo $data[$catlog][$i]["location"];?>"/>
+				<ul>
+				<li>Caption: <?php echo $data[$catlog][$i]["caption"] ?></li>
+				<li>User: <?php echo $data[$catlog][$i]["username"] ?></li>
+				<li>Score: <?php echo $data[$catlog][$i]["rating"] ?></li>
+				<li>Create Date: <?php echo $data[$catlog][$i]["date"] ?></li>
+			</ul>
+		<?php }
 		}
 	}
 }

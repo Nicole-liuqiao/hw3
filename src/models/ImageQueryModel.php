@@ -5,6 +5,9 @@ class ImageQueryModel extends Model
 {
 	public function getResult($formvals) {
 		$result = [];
+		$result['recent'] = [];
+		$result['popularity'] = [];
+
 		$this->ensureTable("IMAGE");
 		$this->ensureTable("USER");
 
