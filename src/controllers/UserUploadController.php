@@ -10,6 +10,7 @@ require_once("./src/views/UserUploadNotificationView.php");
 class UserUploadController extends Controller
 {
     public function processRequest($controller) {
+        //$data notification message
         $data = '';
 
         if(isset($_REQUEST['notification'])) {
