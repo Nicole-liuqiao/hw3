@@ -10,7 +10,7 @@ class SignInModel extends Model
      */         
 
     public function getResult($formvars) {
-        $errMsg = "";
+        $data = [];
         $this::ensureTable("USER");
 
         $qry = sprintf("select * from USER where userName = '" . $formvars['username'] . 
@@ -23,10 +23,11 @@ class SignInModel extends Model
 
         // if there is one row in $qryResult, user login successfully
         // if there is no row in $qryResult, the data doesn't exist in database.        
-        if (mysqli_num_rows($qryResult) == 1) {
+        if ($row = mysqli_fetch_assoc($qryResult)) {
+            $data['userid'] = $row['userid'];
         } else {
-            $errMsg = "username doesn't exist or username and password doesn't match";
+            $data['errMsg'] = "username doesn't exist or username and password doesn't match";
         }
-        return $errMsg;
+        return $data;
     }
 }

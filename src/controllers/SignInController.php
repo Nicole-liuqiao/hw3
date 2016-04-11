@@ -19,10 +19,10 @@ class SignInController extends Controller
          * if form is submitted, $data is the error message after call model to process form data
          */
 
-        $data = "";
+        $data = [];
         if (!isset($_POST['signin']))
         {
-            $data = "Username and Password is required."; 
+            $data['errMsg'] = "Username and Password is required."; 
         } else {
             $formvars = self::CollectRegistrationSubmission();
             $model = new \qiaoliu\hw3\models\SignInModel();
@@ -36,9 +36,10 @@ class SignInController extends Controller
          * if there is error message captured, call sign view with error message as prompt message
          * if there is no error message, login success, redirect to main user page.
          */
-        if (!$data) {
+        if (isset($data['userid'])) {
             session_start();
             $_SESSION['signedin'] = true;
+            $_SESSION['userid'] = $data['userid'];
             $redirect = "";
             //default controller
             if(!isset($_REQUEST['redirect'])) {
@@ -49,7 +50,7 @@ class SignInController extends Controller
             header("Location: index.php?c=" . $redirect );
         } else {
             $view = new \qiaoliu\hw3\views\SignInView();
-            $view->render($data); 
+            $view->render($data['errMsg']); 
         }
     }
 

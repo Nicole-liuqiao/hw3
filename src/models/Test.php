@@ -19,8 +19,8 @@ class Test extends Model
 
         // if there is one row in $qryResult, user login successfully
         // if there is no row in $qryResult, the data doesn't exist in database.        
-        if (mysqli_num_rows($qryResult) == 1) {
-            $errMsg = "user login successfully";
+        if ($row = mysqli_fetch_assoc($qryResult)) {
+             var_dump($row);
         } else {
             $errMsg = "username doesn't exist or username and password doesn't match";
         }
