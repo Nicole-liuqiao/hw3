@@ -17,7 +17,7 @@ $userDomain = ['userMain','userUpload'];
 
 /**
  * if in $userDomain controller, check if signed in. 
- *                               if it's not signed in, redirect to signin page
+ *                               if it's not signed in, redirect to signin page with current controller
  * if not in $userDomain controller, call conresponding controller
  */
 $isSignIn = false;
