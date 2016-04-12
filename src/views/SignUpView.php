@@ -80,7 +80,7 @@ class SignUpView extends View
       <div class = "container">
       
          <form class = "form-signin" role = "form" 
-            action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
+            action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . "?c=signup"; 
             ?>" method = "post">
             <h1 class = "form-signin-heading"><?php echo $data; ?></h1>
             <input type = "text" class = "form-control" 

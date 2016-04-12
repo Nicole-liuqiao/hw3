@@ -69,17 +69,18 @@ abstract class Model
          		userid INT(12) NOT NULL, 
          		date_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
          		location VARCHAR(150) NOT NULL,
-         		scoreSum INT(12),
-         		numOfVotes INT(11)
+         		scoreSum INT(12) DEFAULT 0,
+         		numOfVotes INT(11) DEFAULT 0
          		)");
         		break;
 
         	case 'RATE':
+            //CREATE TABLE RATE (imageid INT(12), userid INT(12) NOT NULL, score INT(12), CONSTRAINT image_userPair PRIMARY KEY (imageid, userid)
         	$qry = sprintf("CREATE TABLE RATE (
          		imageid INT(12), 
          		userid INT(12) NOT NULL, 
          		score INT(12),
-         		CONSTRAINT image_userPair PRIMARY KEY (imageid, userName)
+         		CONSTRAINT image_userPair PRIMARY KEY (imageid, userid)
          		)");
         		break;
         }

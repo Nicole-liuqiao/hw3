@@ -14,17 +14,18 @@ class SignUpController extends Controller
         $data = "";
         if (!isset($_POST['signup']))
         {
-            $data = "Username and Password is required."; 
+            $data = "Username and Password is required!"; 
         } else {
             $formvars = self::CollectRegistrationSubmission();
             $model = new \qiaoliu\hw3\models\SignUpModel();
             $data = $model->getResult($formvars);
         }
-        if ($data) {
+
+        if (!empty($data)) {
             $view = new \qiaoliu\hw3\views\SignUpView();
             $view->render($data); 
         } else {
-            header("Location: " . $_SERVER['REQUEST_URI']);
+            header("Location: " . $_SERVER['PHP_SELF']);
         }
     }
 

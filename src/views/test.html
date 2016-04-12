@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<!--html start-->
+<html lang="en">
+<!--html head start-->
+<head>
+	<title>Image Rating</title>
+	<meta charset="utf-8"/>
+	<link rel="icon" href="./src/styles/icon.ico"/>
+</head>
+<!--html body start-->
+<body>
+	<h1 style="text-align: center;">Image Rating</h1>
+	<div style="text-align: center;"><image src="./src/styles/logo.png"/></div>
+	<a href="./index.php?c=signout">Sign Out</a>
+	<a href="./index.php?c=userUpload">Upload</a>	
+	<h2>Recent</h2>
+				<image src="<?php echo $data[$catlog][$i]["location"];?>"/>
+				<ul>
+				<li>Caption: <?php echo $data[$catlog][$i]["caption"] ?></li>
+				<li>User: <?php echo $data[$catlog][$i]["user"] ?></li>
+				<li>Score: <?php echo $data[$catlog][$i]["rating"] ?></li>
+				<li>Create Date: <?php echo $data[$catlog][$i]["date"] ?></li>
+			</ul>

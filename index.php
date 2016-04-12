@@ -40,7 +40,7 @@ if(!isset($_REQUEST['c']) || $_REQUEST['c'] == "") {
     }
 }
 
-
+var_dump($controller);
 // ------[talk to the requested controller]------ //
 switch($controller){
     case "signup":
